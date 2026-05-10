@@ -1,0 +1,22 @@
+.page{
+    display: flex;
+    gap: 32px;
+    max-width: 1216px;
+    margin: 0 auto;
+    padding: 88px 0;
+    background-color: var(--color-rose-50);
+}
+
+@media (max-width: 768px) {
+    .page{
+        flex-direction: column;
+        padding: 40px;
+    }
+}
+
+@media (max-width: 576px){
+    .page{
+        flex-direction: column;
+        padding: 24px;
+    }
+}
