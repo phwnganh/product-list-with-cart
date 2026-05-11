@@ -116,9 +116,9 @@ function decreaseQuantity(productName){
 }
 
 function setUpQuantityBtns(button, productName){
-    const decrementBtn = document.querySelector(".decrement-btn");
-    const incrementBtn = document.querySelector(".increment-btn");
-    const quantityValue = document.querySelector(".quantity-value");
+    const decrementBtn = button.querySelector(".decrement-btn");
+    const incrementBtn = button.querySelector(".increment-btn");
+    const quantityValue = button.querySelector(".quantity-value");
 
     incrementBtn.addEventListener("click", e => {
         e.stopPropagation();
@@ -135,6 +135,8 @@ function setUpQuantityBtns(button, productName){
 
         if(!cartItem){
             button.classList.remove("active");
+            const productCardThumbnail = button.closest(".product-card__thumbnail");
+            productCardThumbnail.classList.remove("active");
             button.innerHTML = `
             <div class="add-to-cart__icon">
             <img src="./assets/images/icon-add-to-cart.svg" alt="add-to-cart"/>
@@ -151,6 +153,9 @@ function setUpAddToCartBtn(){
     buttons.forEach(button => {
 
         button.addEventListener("click", () => {
+            if(button.classList.contains("active")){
+                return;
+            }
             const productName = button.dataset.id;
             addToCart(productName);
             button.classList.add("active");
