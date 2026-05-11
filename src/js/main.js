@@ -50,12 +50,21 @@ function renderCart(){
     const cartItemHTML = cart.map(item => {
         return `
         <article class="cart-item">
+        <div class="cart-item__body">
+        <div class="cart-item__info">
             <h1 class="cart-item__name">${item.name}</h1>
-            <div class="cart-item__infor">
-            <p class="cart-item__quantity">${item.quantity}x</p>
-            <p class="cart-item__price">@${item.price.toFixed(2)}</p>
-            <p class="cart-item__total">$${(item.price * item.quantity).toFixed(2)}</p>
+            <div class="cart-item__value">
+                <p class="cart-item__quantity">${item.quantity}x</p>
+                <p class="cart-item__price">@${item.price.toFixed(2)}</p>
+                <p class="cart-item__total">$${(item.price * item.quantity).toFixed(2)}</p>
+            </div>
+        </div>
+
+    <button type="button" class="remove-btn" data-id="${item.name}">
+        <img src="../../assets/images/icon-remove-item.svg" alt="remove item"/>
+    </button>
 </div>
+            
 <hr class="cart-item__end"/>
 
 </article>`}).join("")
@@ -78,6 +87,40 @@ This is a <span class="carbon-neutral__emphasize">carbon-neutral</span> delivery
 </div>
 <button type="button" class="confirm-btn">Confirm Order</button>
 `
+    setUpRemoveBtns()
+}
+
+function removeCartFromItem(productName){
+    const cartIndex = cart.findIndex(item => item.name === productName);
+    if(cartIndex === -1) return;
+    cart.splice(cartIndex, 1);
+    renderCart();
+    resetProductCard(productName);
+}
+
+function resetProductCard(productName){
+    const addToCartBtn = document.querySelector(`.add-to-cart-btn[data-id="${productName}"]`)
+    if(!addToCartBtn) return;
+    addToCartBtn.classList.remove("active");
+    const productThumbnail = addToCartBtn.closest(".product-card__thumbnail");
+    productThumbnail.classList.remove("active");
+
+    addToCartBtn.innerHTML = `
+    <div class="add-to-cart__icon">
+            <img src="./assets/images/icon-add-to-cart.svg" alt="add-to-cart"/>
+        </div>
+        <p class="add-to-cart__title">Add to Cart</p>
+    `;
+}
+
+function setUpRemoveBtns(){
+    const removeBtns = document.querySelectorAll(".remove-btn");
+    removeBtns.forEach(removeBtn => {
+        removeBtn.addEventListener("click", () => {
+            const productName = removeBtn.dataset.id;
+            removeCartFromItem(productName);
+        });
+    })
 }
 
 function addToCart(productName){
