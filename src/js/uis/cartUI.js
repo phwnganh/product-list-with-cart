@@ -11,7 +11,7 @@ export function renderCart(){
         <h1 class="your-cart">Your Cart (0)</h1>
   <div class="cart-empty">
     <div class="cart-empty__image">
-      <img src="../../../assets/images/illustration-empty-cart.svg" alt=""/>
+      <img src="../../../assets/images/illustration-empty-cart.svg" alt="empty cart"/>
     </div>
     <p class="cart-empty__description">Your added items will appear here</p>
   </div>`

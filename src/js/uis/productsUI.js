@@ -19,7 +19,7 @@ export function renderProductCard(product){
 </div>
 <div class="product-card__content">
     <p class="product-card__category">${product.category}</p>
-    <h1 class="product-card__title">${product.name}</h1>
+    <h2 class="product-card__title">${product.name}</h2>
     <span class="product-card__price">$${product.price.toFixed(2)}</span>
 </div>
 </article>`
