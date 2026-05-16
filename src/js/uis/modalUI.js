@@ -7,7 +7,8 @@ export function renderConfirmationModal(){
     const modalItemsHTML = cart.map(item => {
         return `
         <article class="modal-item">
-        <div class="modal-item__info">
+        <div class="modal-item__body">
+            <div class="modal-item__info">
             <div class="modal-item__image">
                 <img src="${item.image}" alt="${item.name}"/>
             </div>
@@ -17,8 +18,11 @@ export function renderConfirmationModal(){
                 <p class="modal-item__quantity">${item.quantity}x</p>
                 <p class="modal-item__price">@${item.price}</p>
             </div>
-            <p class="modal-item__total">$${(item.price * item.quantity).toFixed(2)}</p>
+            </div>
+            
 </div>
+            <p class="modal-item__total">$${(item.price * item.quantity).toFixed(2)}</p>
+
 </div>
 <hr class="modal-item__end"/>
 </article>
